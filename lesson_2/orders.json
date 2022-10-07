@@ -1,0 +1,25 @@
+{
+    "orders": [
+        {
+            "item": "asd",
+            "quantity": 33,
+            "price": 1234.0,
+            "buyer": "someone",
+            "date": "2022-10-07 22:09:58.341046"
+        },
+        {
+            "item": "pillow",
+            "quantity": 23,
+            "price": 14444.0,
+            "buyer": "me",
+            "date": "2022-10-07 22:10:15.081382"
+        },
+        {
+            "item": "pillow",
+            "quantity": 23,
+            "price": 14444.0,
+            "buyer": "я",
+            "date": "2022-10-07 22:10:33.440733"
+        }
+    ]
+}
