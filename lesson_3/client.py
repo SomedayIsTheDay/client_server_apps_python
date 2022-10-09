@@ -1,5 +1,3 @@
-"""Программа-клиент"""
-
 import json
 import socket
 import time

@@ -1,5 +1,3 @@
-"""Программа-сервер"""
-
 import socket
 import json
 from common.variables import (
