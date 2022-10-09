@@ -1,5 +1,3 @@
-"""Утилиты"""
-
 import json
 import sys
 from common.variables import (
