@@ -35,8 +35,8 @@ def flags():
     return address, port
 
 
-def get_message(client):
-    encoded_response = client.recv(MAX_PACKAGE_LENGTH)
+def get_message(client, max_length=MAX_PACKAGE_LENGTH):
+    encoded_response = client.recv(max_length)
     if isinstance(encoded_response, bytes):
         json_response = encoded_response.decode(ENCODING)
         response = json.loads(json_response)
