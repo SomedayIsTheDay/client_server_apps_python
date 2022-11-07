@@ -10,6 +10,7 @@ from common.variables import (
     ERROR,
 )
 from common.utils import get_message, send_message, flags
+from logs.server_log_config import logger as server_logger
 
 
 def process_client_message(message):
@@ -28,17 +29,20 @@ def main():
     transport.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     transport.bind(flags())
     transport.listen(MAX_CONNECTIONS)
+    server_logger.debug("Connection request.")
 
     while True:
         client, client_address = transport.accept()
         try:
+            server_logger.debug("Connection was successfully made.")
             message_from_client = get_message(client)
             print(message_from_client)
             response = process_client_message(message_from_client)
             send_message(client, response)
+            server_logger.info("The message was sent.")
             client.close()
         except (ValueError, json.JSONDecodeError):
-            print("Received an invalid message from the client.")
+            server_logger.error("Received an invalid message from the client.")
             client.close()
 
 
