@@ -12,17 +12,20 @@ from common.variables import (
 )
 from common.utils import get_message, send_message, flags
 from logs.client_log_config import logger as client_logger
+from common.utils import log
 
 
+@log
 def create_presence(account_name="Guest"):
     out = {ACTION: PRESENCE, TIME: time.time(), USER: {ACCOUNT_NAME: account_name}}
     return out
 
 
+@log
 def process_response(message):
     if RESPONSE in message:
         if message[RESPONSE] == 200:
-            return "200 : OR"
+            return "200 : OK"
         return f"400 : {message[ERROR]}"
     raise ValueError
 
