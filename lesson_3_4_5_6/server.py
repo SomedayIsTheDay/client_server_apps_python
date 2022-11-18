@@ -11,8 +11,10 @@ from common.variables import (
 )
 from common.utils import get_message, send_message, flags
 from logs.server_log_config import logger as server_logger
+from common.utils import log
 
 
+@log
 def process_client_message(message):
     if (
         ACTION in message

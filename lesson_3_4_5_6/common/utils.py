@@ -6,8 +6,31 @@ from common.variables import (
     DEFAULT_PORT,
     DEFAULT_IP_ADDRESS,
 )
+import inspect
 
 
+def log(func):
+    def wrapper(*args, **kwargs):
+        if "client" in sys.argv[0]:
+            from logs.client_log_config import logger as client_logger
+
+            client_logger.info(
+                f"{func.__name__} func was called from {inspect.stack()[1][3]} function, args: {args}, kwargs: {kwargs}"
+            )
+
+        else:
+            from logs.server_log_config import logger as server_logger
+
+            server_logger.info(
+                f"{func.__name__} func was called from {inspect.stack()[1][3]} function, args: {args}, kwargs: {kwargs}"
+            )
+
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
+@log
 def flags():
     try:
         if "-p" in sys.argv:
@@ -35,6 +58,7 @@ def flags():
     return address, port
 
 
+@log
 def get_message(client, max_length=MAX_PACKAGE_LENGTH):
     encoded_response = client.recv(max_length)
     if isinstance(encoded_response, bytes):
@@ -46,6 +70,7 @@ def get_message(client, max_length=MAX_PACKAGE_LENGTH):
     raise ValueError
 
 
+@log
 def send_message(sock, message):
     if not isinstance(message, dict):
         raise TypeError

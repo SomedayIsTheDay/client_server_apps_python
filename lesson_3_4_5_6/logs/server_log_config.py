@@ -14,7 +14,7 @@ fh = logging.FileHandler(f_PATH, encoding="utf-8")
 fh.setFormatter(formatter)
 fh.setLevel(logging.DEBUG)
 
-th = handlers.TimedRotatingFileHandler(t_PATH, when="s", interval=10, encoding="utf-8")
+th = handlers.TimedRotatingFileHandler(t_PATH, when="m", interval=10, encoding="utf-8")
 
 logger.addHandler(th)
 logger.addHandler(fh)
