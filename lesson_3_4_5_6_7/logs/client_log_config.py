@@ -8,12 +8,12 @@ formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s - %(mess
 
 PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "app.client.log")
 fh = logging.FileHandler(PATH, encoding="utf-8")
-sh = logging.StreamHandler()
+# sh = logging.StreamHandler()
 
 fh.setFormatter(formatter)
 fh.setLevel(logging.DEBUG)
-sh.setFormatter(formatter)
-sh.setLevel(logging.INFO)
+# sh.setFormatter(formatter)
+# sh.setLevel(logging.INFO)
 
 logger.addHandler(fh)
-logger.addHandler(sh)
+# logger.addHandler(sh)
